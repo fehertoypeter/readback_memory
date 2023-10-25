@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Reverse Readback Memory Játék</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #game-container {
+            margin-top: 20px;
+        }
+        .number-box {
+            display: inline-block;
+            width: 90%;
+            height: 50px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .tip-box {
+            display: inline-block;
+            width: 90%;
+            height: 50px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+        }
+        #settings {
+            margin-top: 20px;
+        }
+        #feedback {
+            margin-top: 10px;
+        }
+        #input-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin-top: 20px;
+            justify-content: center;
+            justify-items: center;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .input-button {
+            width: 80px;
+            height: 80px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reverse Readback Memory Játék</h1>
+    <div id="settings">
+        <label for="numDigits">Számok száma:</label>
+        <select id="numDigits">
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="3">6</option>
+            <option value="4">7</option>
+            <option value="5">8</option>
+        </select>
+        <button id="startGame">Új játék</button>
+    </div>
+    <div id="game-container">
+        <div class="number-box"></div>
+    </div>
+    <div>
+        <div id="inputNumbers" class="tip-box"> Írd be a számaid </div>
+    </div>
+    <div id="input-buttons">
+        <button class="input-button" data-digit="1">1</button>
+        <button class="input-button" data-digit="2">2</button>
+        <button class="input-button" data-digit="3">3</button>
+        <button class="input-button" data-digit="4">4</button>
+        <button class="input-button" data-digit="5">5</button>
+        <button class="input-button" data-digit="6">6</button>
+        <button class="input-button" data-digit="7">7</button>
+        <button class="input-button" data-digit="8">8</button>
+        <button class="input-button" data-digit="9">9</button>
+        <button class="input-button" data-digit="0">0</button>
+        <button id="check" class="input-button"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+    <div id="feedback"></div>
+   
+
+    <script>
+        let sequence = [];
+        let inputSequence = [];
+        let numDigits = 3; // Alapértelmezett érték
+        let currentIndex = 0;
+
+        const gameContainer = document.getElementById('game-container');
+        const inputNumbersContainer = document.getElementById('inputNumbers');
+        const clearInputButton = document.getElementById('clearInput');
+        const feedback = document.getElementById('feedback');
+        const numDigitsSelect = document.getElementById('numDigits');
+        const startGameButton = document.getElementById('startGame');
+        const checkButton = document.getElementById('check');
+        const numberBox = document.querySelector('.number-box');
+        const inputButtons = document.querySelectorAll('.input-button');
+        const inputResult = document.getElementById('inputResult'); // Az inputResult elem hozzáadása
+
+        numDigitsSelect.addEventListener('change', () => {
+            numDigits = parseInt(numDigitsSelect.value);
+            startGame();
+        });
+
+        startGameButton.addEventListener('click', () => {
+            startGame();
+        });
+
+        
+
+        checkButton.addEventListener('click', () => {
+            checkInputSequence();
+        });
+
+        inputButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const digit = button.getAttribute('data-digit');
+                inputSequence.push(parseInt(digit));
+                updateInputNumbersDisplay();
+            });
+        });
+
+        function startGame() {
+            sequence = generateRandomSequence(numDigits);
+            inputSequence = [];
+            currentIndex = 0;
+            updateInputNumbersDisplay();
+            feedback.textContent = '';
+            displayNextNumber();
+        }
+
+        function generateRandomSequence(length) {
+            const sequence = [];
+            for (let i = 0; i < length; i++) {
+                sequence.push(Math.floor(Math.random() * 10));
+            }
+            return sequence;
+        }
+
+
+
+
+
+
+
+
+
+if ('speechSynthesis' in window) {
+    // A böngésző támogatja a Web Speech API-t
+} else {
+    console.log('A böngésződ nem támogatja a Web Speech API-t.');
+}
+
+
+        if ('speechSynthesis' in window) {
+    const synth = window.speechSynthesis;
+
+    // A generált számok felolvasásához használt függvény
+    function speakNumber(number) {
+        const utterance = new SpeechSynthesisUtterance(number.toString());
+        synth.speak(utterance);
+    }
+
+    // ...
+
+    // A generált számok megjelenítése és felolvasása
+    function displayNextNumber() {
+        if (currentIndex < sequence.length) {
+            const number = sequence[currentIndex];
+            numberBox.textContent = number;
+            speakNumber(number); // Felolvasás
+            setTimeout(() => {
+                numberBox.textContent = '';
+                currentIndex++;
+                displayNextNumber();
+            }, 1000); // Megjelenítési időzítés
+        } else {
+            // Ellenőrizzük, hogy a sorrend végére értünk-e, és ha igen, kiürítjük a numberBox-ot.
+            numberBox.textContent = '';
+        }
+    }
+
+    // ...
+
+    // A generált számok megjelenítésének kezdeti hívása
+    displayNextNumber();
+} else {
+    console.error('A Web Speech API nem támogatott ebben a böngészőben.');
+}
+
+        function updateInputNumbersDisplay() {
+    // Ellenőrizzük, hogy az inputSequence ne tartalmazzon NaN értékeket.
+    inputNumbersContainer.textContent = inputSequence.filter(item => !isNaN(item)).join('');
+}
+
+        function checkInputSequence() {
+    if (inputSequence.length !== sequence.length) {
+        displayResult(false);
+        return;
+    }
+
+    for (let i = 0; i < sequence.length; i++) {
+        if (inputSequence[i] !== sequence[sequence.length - 1 - i]) {
+            displayResult(false);
+            return;
+        }
+    }
+
+    displayResult(true);
+}
+
+function displayResult(isCorrect) {
+    const resultText = isCorrect ? 'Helyes sorrend!' : 'Rossz sorrend!';
+    feedback.innerHTML = `<span style="color: ${isCorrect ? 'green' : 'red'};">${resultText}</span>`;
+   
+
+    setTimeout(() => {
+        feedback.textContent = '';
+       
+        startGame();
+    }, 2000); // Visszajelzés megjelenítése után új játék indítása
+}
+
+
+
+
+
+
+// WEBSPEECH API 
+// Ellenőrzze, hogy a böngésző támogatja-e a Web Speech API-t
+
+
+
+    </script>
+    <script src="https://kit.fontawesome.com/6eef71e6fe.js" crossorigin="anonymous"></script>
+</body>
+</html>
