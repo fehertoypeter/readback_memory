@@ -41,6 +41,7 @@ body {
     width: 300px;
     margin: 0 auto; /* Középre igazítás */
     justify-items: center;
+
 }
 
 .input-button {
@@ -51,6 +52,9 @@ body {
     height: 60px;
     border-radius: 30px;
     color: #223968;
+    display: flex;
+    justify-content: center; /* Tartalom vízszintes középre igazítása */
+    align-items: center; /* Tartalom függőleges középre igazítása */
 }
 
 #currentNumber {
