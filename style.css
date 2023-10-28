@@ -1,7 +1,7 @@
 body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
     text-align: center;
-    background: white; /* Háttérszín hozzáadva */
+    background: black; /* Háttérszín hozzáadva */
     margin: 0;
     padding: 0;
 }
