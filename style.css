@@ -1,0 +1,133 @@
+body {
+            font-family: 'Roboto', 'Helvetica', sans-serif;
+
+            text-align: center;
+        }
+        #game-container {
+            margin-top: 20px;
+        }
+        .number-box {
+            display: inline-block;
+            width: 90%;
+            height: 50px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .tip-box {
+            display: inline-block;
+            width: 90%;
+            height: 50px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15), 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            background:white;
+        }
+        #settings {
+            margin-top: 20px;
+        }
+        #feedback {
+            margin-top: 10px;
+        }
+        #input-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            margin-top: 20px;
+            justify-content: center;
+            justify-items: center;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .input-button {
+        background: hsl(210, 25%, 95%);
+        border: none;
+        font-size: 2rem;
+        /* Playful Styles: */
+        inline-size: 60px;
+        block-size: 60px;
+        border-radius: 40px;
+        color:#223968;
+        }
+
+
+        #currentNumber{
+            display:none;
+        }
+        #gameContainer{
+            border-radius: 10px;
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15), 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            margin-inline-start: auto;
+            margin-inline-end: auto;
+            margin-block-start: 2em;
+            max-inline-size: 22rem;
+            overflow: hidden;
+            color: #223968;
+            background:#C1DFEF;
+        }
+        #check{
+            background:#CDDA32;
+        }
+
+
+        .num-button {
+    border: none;
+        font-size: 1rem;
+        /* Playful Styles: */
+        inline-size: 30px;
+        block-size: 30px;
+        border-radius: 15px;
+        color:#223968;
+        background:white;
+
+}
+
+.num-button.selected {
+    background:rgb(205,218,50);
+    color:#223968; /* Kiválasztott gomb szövegszíne */
+    border: 2px #223968 solid;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15), 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+}
+
+#startGame{
+    
+        border: none;
+        font-size: 2rem;
+        /* Playful Styles: */
+        inline-size: 60px;
+        block-size: 60px;
+        border-radius: 15px;
+        color:#223968;
+        width:300px;
+        background:rgb(205,218,50);
+        margin-top:20px;
+        }
+#startGame {
+    border: none;
+    font-size: 2rem;
+    inline-size: 60px;
+    block-size: 60px;
+    border-radius: 15px;
+    color: #223968;
+    width: 300px;
+    background: rgb(205,218,50);
+    margin-top: 20px;
+    font-weight: 700 !important;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+#numButtons{
+    margin-left:10px;
+    margin-bottom:20px;
+    margin-top:5px;
+}
+h1 {
+    font-size: 1.7em;
+}
