@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="gameContainer">
-    <h1>Reverse Memory Span v10</h1>
+    <h1>Reverse Memory Span v6</h1>
     <div id="currentNumber" class="number-box"></div>
     <div id="settings">
         <label>Digits:</label>
@@ -48,7 +48,7 @@
 </div>
 
 <script>
-    let sequence = [1, 2, 3, 4];
+    let sequence = [];
     let inputSequence = [];
     let numDigits = 4;
     let currentIndex = 0;
@@ -111,36 +111,25 @@
     });
 
         function startGame() {
-           
+            inputNumbersContainer.style.backgroundColor = 'white';
+            sequence = generateRandomSequence(numDigits);
+            inputSequence = [];
+            currentIndex = 0;
+            updateInputNumbersDisplay();
+            feedback.textContent = '';
+            gameStarted = true;
             playSequenceSounds(sequence);
         }
 
         function generateRandomSequence(length) {
-            const sequence = [1];
+            const sequence = [];
             for (let i = 0; i < length; i++) {
                 sequence.push(Math.floor(Math.random() * 10));
             }
             return sequence;
         }
 
-        function displayNextNumber() {
-            if (currentIndex < sequence.length) {
-                const nextNumber = sequence[currentIndex];
-                currentNumberText = nextNumber.toString();
-                currentNumberBox.textContent = currentNumberText;
-                loadAllNumberSounds(sequence);
-                playNumberSound(nextNumber);
-                setTimeout(() => {
-                    currentNumberBox.textContent = '';
-                    currentIndex++;
-                    displayNextNumber();
-                }, 1500);
-            } else {
-                currentNumberText = '';
-                currentNumberBox.textContent = '';
-            }
-        }
-
+   
         function loadAllNumberSounds(numbers) {
             numbers.forEach(number => {
                 const audio = new Audio(number + '.mp3');
@@ -202,7 +191,7 @@ function playSequenceSounds(sequence) {
     playNextSound();
 }
 
-
+sequence = [1, 2, 3, 4]; // Példa számsorozat
 
 
   
@@ -211,3 +200,4 @@ function playSequenceSounds(sequence) {
     <script src="https://kit.fontawesome.com/6eef71e6fe.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
