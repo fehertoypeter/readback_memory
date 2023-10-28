@@ -1,7 +1,7 @@
 body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
     text-align: center;
-    background: black; /* Háttérszín hozzáadva */
+    background: white; /* Háttérszín hozzáadva */
     margin: 0;
     padding: 0;
 }
@@ -84,6 +84,9 @@ body {
     border-radius: 15px;
     color: #223968;
     background: white;
+    display: flex;
+    justify-content: center; /* Tartalom vízszintes középre igazítása */
+    align-items: center; /* Tartalom függőleges középre igazítása */
 }
 
 .num-button.selected {
