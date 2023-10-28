@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="gameContainer">
-    <h1>Reverse Memory Span v8</h1>
+    <h1>Reverse Memory Span v6</h1>
     <div id="currentNumber" class="number-box"></div>
     <div id="settings">
         <label>Digits:</label>
@@ -48,7 +48,7 @@
 </div>
 
 <script>
-    let sequence = [];
+    let sequence = [1, 2, 3, 4];
     let inputSequence = [];
     let numDigits = 4;
     let currentIndex = 0;
@@ -111,17 +111,12 @@
     });
 
         function startGame() {
-            sequence = generateRandomSequence(numDigits);
-            inputSequence = [];
-            currentIndex = 0;
-            updateInputNumbersDisplay();
-            feedback.textContent = '';
-            gameStarted = true;
-            displayNextNumber();
+           
+            playSequenceSounds(sequence);
         }
 
         function generateRandomSequence(length) {
-            const sequence = [];
+            const sequence = [1];
             for (let i = 0; i < length; i++) {
                 sequence.push(Math.floor(Math.random() * 10));
             }
@@ -185,14 +180,32 @@
 
 
     setTimeout(() => {
-        feedback.textContent = '';
-        gameStarted = false;
+        playNumberSound(nextNumber);
+}, 100);
+}
+function playSequenceSounds(sequence) {
+    let currentIndex = 0;
 
-        // Háttérszín visszaállítása eredeti színre
-        inputNumbersContainer.style.backgroundColor = 'white';
-    }, 5000);
+    function playNextSound() {
+        if (currentIndex < sequence.length) {
+            const number = sequence[currentIndex];
+            const audio = new Audio(number + '.mp3');
+            audio.play();
+
+            audio.onended = function() {
+                currentIndex++;
+                playNextSound();
+            };
+        }
+    }
+
+    playNextSound();
 }
 
+
+
+
+  
 
     </script>
     <script src="https://kit.fontawesome.com/6eef71e6fe.js" crossorigin="anonymous"></script>
