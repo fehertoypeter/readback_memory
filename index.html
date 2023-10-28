@@ -59,16 +59,17 @@
     </style>
 </head>
 <body>
-    <h1>Reverse Readback Memory Játék</h1>
+    <h1>Reverse Readback Memory </h1>
+    <div id="currentNumber" class="number-box"></div>
     <div id="settings">
         <label for="numDigits">Számok száma:</label>
         <select id="numDigits">
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5">5</option>
-            <option value="3">6</option>
-            <option value="4">7</option>
-            <option value="5">8</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
         </select>
         <button id="startGame">Új játék</button>
     </div>
@@ -88,6 +89,7 @@
         <button class="input-button" data-digit="7">7</button>
         <button class="input-button" data-digit="8">8</button>
         <button class="input-button" data-digit="9">9</button>
+        <button id="clearInput" class="input-button"><i class="fa-solid fa-delete-left"></i></button>
         <button class="input-button" data-digit="0">0</button>
         <button id="check" class="input-button"><i class="fa-solid fa-arrow-right"></i></button>
     </div>
@@ -110,6 +112,7 @@
         const numberBox = document.querySelector('.number-box');
         const inputButtons = document.querySelectorAll('.input-button');
         const inputResult = document.getElementById('inputResult'); // Az inputResult elem hozzáadása
+         const currentNumberBox = document.getElementById('currentNumber');
 
         numDigitsSelect.addEventListener('change', () => {
             numDigits = parseInt(numDigitsSelect.value);
@@ -120,7 +123,12 @@
             startGame();
         });
 
-        
+        clearInputButton.addEventListener('click', () => {
+    if (inputSequence.length > 0) {
+        inputSequence.pop();
+        updateInputNumbersDisplay();
+    }
+});
 
         checkButton.addEventListener('click', () => {
             checkInputSequence();
@@ -151,55 +159,30 @@
             return sequence;
         }
 
+        function displayNextNumber() {
+    if (currentIndex < sequence.length) {
+        const nextNumber = sequence[currentIndex];
+        currentNumberText = nextNumber.toString(); // Konvertáljuk a számot szöveges formába
+        currentNumberBox.textContent = currentNumberText;
 
-
-
-
-
-
-
-
-if ('speechSynthesis' in window) {
-    // A böngésző támogatja a Web Speech API-t
-} else {
-    console.log('A böngésződ nem támogatja a Web Speech API-t.');
+        // Automatikusan játsszuk le a hangfájlt a jelenlegi számhoz
+        playNumberSound(nextNumber);
+        
+        setTimeout(() => {
+            currentNumberBox.textContent = '';
+            currentIndex++;
+            displayNextNumber();
+        }, 1000); // Megjelenítési időzítés
+    } else {
+        // Ellenőrizzük, hogy a sorrend végére értünk-e, és ha igen, kiürítjük a numberBox-ot.
+        currentNumberText = '';
+        currentNumberBox.textContent = '';
+    }
 }
 
-
-        if ('speechSynthesis' in window) {
-    const synth = window.speechSynthesis;
-
-    // A generált számok felolvasásához használt függvény
-    function speakNumber(number) {
-        const utterance = new SpeechSynthesisUtterance(number.toString());
-        synth.speak(utterance);
-    }
-
-    // ...
-
-    // A generált számok megjelenítése és felolvasása
-    function displayNextNumber() {
-        if (currentIndex < sequence.length) {
-            const number = sequence[currentIndex];
-            numberBox.textContent = number;
-            speakNumber(number); // Felolvasás
-            setTimeout(() => {
-                numberBox.textContent = '';
-                currentIndex++;
-                displayNextNumber();
-            }, 1000); // Megjelenítési időzítés
-        } else {
-            // Ellenőrizzük, hogy a sorrend végére értünk-e, és ha igen, kiürítjük a numberBox-ot.
-            numberBox.textContent = '';
-        }
-    }
-
-    // ...
-
-    // A generált számok megjelenítésének kezdeti hívása
-    displayNextNumber();
-} else {
-    console.error('A Web Speech API nem támogatott ebben a böngészőben.');
+function playNumberSound(number) {
+    const audio = new Audio(number + '.mp3'); // Betöltjük a megfelelő hangfájlt
+    audio.play(); // Lejátszás
 }
 
         function updateInputNumbersDisplay() {
@@ -239,9 +222,6 @@ function displayResult(isCorrect) {
 
 
 
-
-// WEBSPEECH API 
-// Ellenőrzze, hogy a böngésző támogatja-e a Web Speech API-t
 
 
 
