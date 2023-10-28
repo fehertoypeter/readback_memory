@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="gameContainer">
-    <h1>Reverse Memory Span</h1>
+    <h1>Reverse Memory Span 1</h1>
     <div id="currentNumber" class="number-box"></div>
     <div id="settings">
         <label>Digits:</label>
@@ -53,9 +53,11 @@
     let numDigits = 4;
     let currentIndex = 0;
     let gameStarted = false;
+    let audioElements = [];
 
     const gameContainer = document.getElementById('game-container');
     const inputNumbersContainer = document.getElementById('inputNumbers');
+
     const clearInputButton = document.getElementById('clearInput');
     const feedback = document.getElementById('feedback');
     const numButtons = document.querySelectorAll('.num-button');
@@ -64,6 +66,7 @@
     const numberBox = document.querySelector('.number-box');
     const inputButtons = document.querySelectorAll('.input-button');
     const currentNumberBox = document.getElementById('currentNumber');
+
 
     numButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -174,15 +177,23 @@
         }
 
         function displayResult(isCorrect) {
-            const resultText = isCorrect ? 'Helyes sorrend!' : 'Rossz sorrend!';
-            feedback.innerHTML = `<span style="color: ${isCorrect ? 'green' : 'red'};">${resultText}</span`;
+    
 
-            setTimeout(() => {
-                feedback.textContent = '';
-                gameStarted = false;
-                
-            }, 2000);
-        }
+    // Háttérszín beállítása
+    inputNumbersContainer.style.backgroundColor = isCorrect ? '#CDDA32' : '#FF0000'; 
+
+
+    setTimeout(() => {
+        feedback.textContent = '';
+        gameStarted = false;
+
+        // Háttérszín visszaállítása eredeti színre
+        inputNumbersContainer.style.backgroundColor = 'white';
+    }, 5000);
+}
+
+
+
     </script>
     <script src="https://kit.fontawesome.com/6eef71e6fe.js" crossorigin="anonymous"></script>
 </body>
