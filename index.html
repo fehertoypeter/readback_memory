@@ -59,7 +59,7 @@
     </style>
 </head>
 <body>
-    <h1>Reverse Readback Memory </h1>
+    <h1>Reverse Readback Memory 13:21</h1>
     <div id="currentNumber" class="number-box"></div>
     <div id="settings">
         <label for="numDigits">Számok száma:</label>
@@ -165,9 +165,9 @@
         currentNumberText = nextNumber.toString(); // Konvertáljuk a számot szöveges formába
         currentNumberBox.textContent = currentNumberText;
 
-        // Automatikusan játsszuk le a hangfájlt a jelenlegi számhoz
+        // Betöltjük a megfelelő hangfájlt és játszuk le a számot
         playNumberSound(nextNumber);
-        
+
         setTimeout(() => {
             currentNumberBox.textContent = '';
             currentIndex++;
