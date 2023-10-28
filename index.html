@@ -59,7 +59,7 @@
     const gameContainer = document.getElementById('game-container');
     const inputNumbersContainer = document.getElementById('inputNumbers');
 
-    const clearInputButton = document.getElementById('clearInput');
+   
     const feedback = document.getElementById('feedback');
     const numButtons = document.querySelectorAll('.num-button');
     const startGameButton = document.getElementById('startGame');
@@ -87,12 +87,7 @@
         startGame();
     });
 
-    clearInputButton.addEventListener('click', () => {
-        if (inputSequence.length > 0) {
-            inputSequence.pop();
-            updateInputNumbersDisplay();
-        }
-    });
+   
 
     checkButton.addEventListener('click', () => {
         if (gameStarted) {
@@ -143,6 +138,7 @@
 
         function updateInputNumbersDisplay() {
             inputNumbersContainer.textContent = inputSequence.filter(item => !isNaN(item)).join('');
+
         }
 
         function checkInputSequence() {
@@ -189,8 +185,6 @@ function playSequenceSounds(sequence) {
 
     playNextSound();
 }
-
-
 
 
   
