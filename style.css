@@ -1,7 +1,7 @@
 body {
     font-family: 'Roboto', 'Helvetica', sans-serif;
     text-align: center;
-    background: white; /* Háttérszín hozzáadva */
+    background: #ffffff; /* Háttérszín hozzáadva */
     margin: 0;
     padding: 0;
 }
@@ -14,7 +14,7 @@ body {
     display: inline-block;
     width: 90%;
     height: 50px;
-    margin: 5px;
+    margin: 15px;
     border: 1px solid #ccc;
     font-size: 24px;
     line-height: 50px;
@@ -87,6 +87,7 @@ body {
     display: flex;
     justify-content: center; /* Tartalom vízszintes középre igazítása */
     align-items: center; /* Tartalom függőleges középre igazítása */
+    margin: 3px;
 }
 
 .num-button.selected {
@@ -94,6 +95,10 @@ body {
     color: #223968;
     border: 2px solid #223968;
     box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15), 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+    isplay: flex;
+    justify-content: center; /* Tartalom vízszintes középre igazítása */
+    align-items: center; /* Tartalom függőleges középre igazítása */
+    margin: 3px;
 }
 
 #startGame {
@@ -114,6 +119,8 @@ body {
     margin-left: 10px;
     margin-bottom: 20px;
     margin-top: 5px;
+    display: flex;
+    justify-content: center;
 }
 
 h1 {

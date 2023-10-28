@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="gameContainer">
-    <h1>Reverse Memory Span v6</h1>
+    <h1>Reverse Memory Span</h1>
     <div id="currentNumber" class="number-box"></div>
     <div id="settings">
         <label>Digits:</label>
@@ -168,10 +168,9 @@
     inputNumbersContainer.style.backgroundColor = isCorrect ? '#CDDA32' : '#FF0000'; 
 
 
-    setTimeout(() => {
-        playNumberSound(nextNumber);
-}, 100);
+ 
 }
+
 function playSequenceSounds(sequence) {
     let currentIndex = 0;
 
@@ -191,7 +190,7 @@ function playSequenceSounds(sequence) {
     playNextSound();
 }
 
-sequence = [1, 2, 3, 4]; // Példa számsorozat
+
 
 
   
